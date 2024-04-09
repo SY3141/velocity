@@ -1,15 +1,18 @@
 package org.example;
 
-public class Velocity implements velocityInterface {
+public class Velocity {
     private Speed speed, speedX, speedY;
     private Direction direction;
 
-    public Velocity() {
-        this.speed = new Speed(0); // Default speed initialized to 0
-        this.direction = new Direction(0); // Default direction initialized to directly to the right/east
+    public Velocity(Speed speed, Direction direction) {
+        this.speed = speed;
+        this.direction = direction;
+        this.speedX = getSpeedX();
+        this.speedY = getSpeedY();
     }
 
-    public Velocity(Speed speed, Direction direction) {
+
+    public Velocity() {
         this.speed = speed;
         this.direction = direction;
     }
@@ -28,32 +31,32 @@ public class Velocity implements velocityInterface {
         return new Speed((int) (speed.getValue() * Math.sin(direction.getAngle())));
     }
 
-    @Override
+
     public Direction getDirection() {
         return direction;
     }
 
-    @Override
+
     public void setSpeed(Speed speed) {
         this.speed = speed;
     }
 
-    @Override
+
     public void setDirection(Direction direction) {
         this.direction = direction;
     }
 
-    @Override
+
     public void reverse() {
         this.direction = direction.oppositeDirection();
+        this.reverseX();
+        this.reverseY();
     }
 
-    @Override
     public void reverseX() {
         this.speedX.reverse();
     }
 
-    @Override
     public void reverseY() {
         this.speedX.reverse();
     }

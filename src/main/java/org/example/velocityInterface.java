@@ -3,8 +3,9 @@ package org.example;
 public interface velocityInterface {
         //private Speed speed, speedX, speedY;
         //private Direction direction;
-        //public Velocity(); //constructor
-        //public Velocity(Speed speed, Direction direction); //constructor
+        //public Velocity();
+        //public Velocity(Speed speed, Direction direction);
+
         public Speed getSpeed();
         public Speed getSpeedX(); // get speed in X direction
         public Speed getSpeedY(); // get speed in Y direction
