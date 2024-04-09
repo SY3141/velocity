@@ -5,10 +5,8 @@ public class Velocity {
     private Direction direction;
 
     public Velocity(Speed speed, Direction direction) {
-        this.speed = speed;
         this.direction = direction;
-        this.speedX = getSpeedX();
-        this.speedY = getSpeedY();
+        this.setSpeed(speed);
     }
 
     public Velocity() {
@@ -22,12 +20,12 @@ public class Velocity {
 
     public Speed getSpeedX() {
         //  horizontal component of the velocity
-        return new Speed((int) (speed.getValue() * Math.cos(direction.getAngle())));
+        return this.speedX;
     }
 
     public Speed getSpeedY() {
         // vertical component of the velocity
-        return new Speed((int) (speed.getValue() * Math.sin(direction.getAngle())));
+        return this.speedY;
     }
 
     public Direction getDirection() {
@@ -36,6 +34,10 @@ public class Velocity {
 
     public void setSpeed(Speed speed) {
         this.speed = speed;
+        int x = (int) (Math.abs(speed.getValue()) * Math.cos(Math.toRadians(direction.getAngle())));
+        int y = (int) (Math.abs(speed.getValue()) * Math.sin(Math.toRadians(direction.getAngle())));
+        this.speedX = new Speed(x);
+        this.speedY = new Speed(y);
     }
 
     public void setDirection(Direction direction) {
@@ -43,14 +45,15 @@ public class Velocity {
     }
 
     public void reverse() {
-        this.direction = direction.oppositeDirection();
-        this.reverseX();
-        this.reverseY();
+        this.speedX.reverse();
+        this.speedY.reverse();
+        this.direction.oppositeDirection();
     }
     public void reverseX() {
         this.speedX.reverse();
     }
     public void reverseY() {
-        this.speedX.reverse();
+        this.speedY.reverse();
+
     }
 }

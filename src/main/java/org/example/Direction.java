@@ -11,11 +11,14 @@ public class Direction {
         return angle;
     }
 
+    public void calcAngle(int x, int y){
+        this.angle = (int) Math.toDegrees(Math.atan2(y, x));
+    }
+
     public void setAngle(int angle) {
         this.angle = angle;
     }
-    public Direction oppositeDirection(){
-        this.angle = 360- this.angle;
-        return this;
+    public void oppositeDirection(){
+        this.angle = (this.angle + 180) % 360;
     }
 }
